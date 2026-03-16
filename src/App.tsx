@@ -6,6 +6,7 @@ import { useState, useEffect, useCallback, useRef, memo } from 'react';
 import { cn } from '@/lib/utils';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { Header } from '@/components/layout/Header';
+import { LandingPage } from '@/sections/LandingPage';
 import { Dashboard } from '@/sections/Dashboard';
 import { AdminRH } from '@/sections/AdminRH';
 import { TempsActivites } from '@/sections/TempsActivites';
@@ -17,78 +18,6 @@ import { PESTEL } from '@/sections/PESTEL';
 import { BSC } from '@/sections/BSC';
 import { Risk } from '@/sections/Risk';
 import './App.css';
-
-// ═══ SPLASH SCREEN COMPONENT (OPTIMISÉ) ═══
-const SplashScreen = memo(function SplashScreen({ onComplete }: { onComplete: () => void }) {
-  const [progress, setProgress] = useState(0);
-  const [visible, setVisible] = useState(true);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  useEffect(() => {
-    intervalRef.current = setInterval(() => {
-      setProgress(p => {
-        if (p >= 100) {
-          if (intervalRef.current) clearInterval(intervalRef.current);
-          setTimeout(() => {
-            setVisible(false);
-            setTimeout(onComplete, 500);
-          }, 300);
-          return 100;
-        }
-        return p + 4; // Incrément plus rapide
-      });
-    }, 25);
-
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
-  }, [onComplete]);
-
-  if (!visible) return null;
-
-  return (
-    <div
-      className={cn(
-        "fixed inset-0 z-[100] bg-[#0B1121] flex flex-col items-center justify-center transition-all duration-500",
-        progress >= 100 && "opacity-0 scale-105"
-      )}
-    >
-      <div className="mb-8">
-        <h1 className="text-5xl md:text-6xl font-bold text-white tracking-wider">
-          {'SIRH BOYS'.split('').map((char, i) => (
-            <span
-              key={i}
-              className="inline-block"
-              style={{
-                animation: `fadeInUp 0.3s ease ${i * 50}ms both`,
-              }}
-            >
-              {char === ' ' ? '\u00A0' : char}
-            </span>
-          ))}
-        </h1>
-        <p className="text-center text-blue-400/60 mt-4 text-sm tracking-widest uppercase">
-          SonicShelf Strategic HR
-        </p>
-      </div>
-
-      <div className="w-64 h-1 bg-slate-800 rounded-full overflow-hidden">
-        <div
-          className="h-full bg-gradient-to-r from-blue-600 to-blue-400 transition-all duration-75"
-          style={{ width: `${progress}%` }}
-        />
-      </div>
-      <p className="text-slate-500 text-xs mt-2">{progress}%</p>
-
-      <style>{`
-        @keyframes fadeInUp {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
-    </div>
-  );
-});
 
 // ═══ CUSTOM CURSOR (OPTIMISÉ AVEC THROTTLE) ═══
 const CustomCursor = memo(function CustomCursor() {
@@ -249,7 +178,7 @@ const AmbientOrbs = memo(function AmbientOrbs() {
 
 // ═══ MAIN APP ═══
 function App() {
-  const [loading, setLoading] = useState(true);
+  const [showLanding, setShowLanding] = useState(true);
   const [activeSection, setActiveSection] = useState('dashboard');
   const [presentationMode, setPresentationMode] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -284,15 +213,11 @@ function App() {
     });
   }, []);
 
-  const handleLoadingComplete = useCallback(() => {
-    setLoading(false);
-  }, []);
-
   return (
     <>
-      {loading && <SplashScreen onComplete={handleLoadingComplete} />}
+      {showLanding && <LandingPage onEnter={() => setShowLanding(false)} />}
 
-      {!loading && (
+      {!showLanding && (
         <div className={cn(
           "min-h-screen bg-[#0B1121] text-slate-300",
           presentationMode && "text-lg"
