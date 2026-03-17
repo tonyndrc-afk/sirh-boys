@@ -50,6 +50,16 @@ const competencesData: Competence[] = [
   { id: 18, type: 'Hard', categorie: 'Support', nom: 'Management intermédiaire', criticite: 4, niveauActuel: 1, niveauRequis: 5, gap: 4, score: 16, action: 'Recruter', keyRisk: true, justification: 'Fondateurs seuls décisionnaires → goulot' },
   { id: 19, type: 'Hard', categorie: 'Support', nom: 'Recrutement tech & sourcing', criticite: 3, niveauActuel: 1, niveauRequis: 4, gap: 3, score: 9, action: 'Recruter', keyRisk: false, justification: 'Délais recrutement IA/ML longs' },
   { id: 20, type: 'Soft', categorie: 'Soft Skills', nom: 'Leadership de proximité', criticite: 5, niveauActuel: 1, niveauRequis: 5, gap: 4, score: 20, action: 'Recruter', keyRisk: true, justification: 'Aucun manager intermédiaire → 2 devs en tension' },
+  { id: 21, type: 'Soft', categorie: 'Soft Skills', nom: 'Communication interpersonnelle', criticite: 5, niveauActuel: 2, niveauRequis: 5, gap: 3, score: 15, action: 'Internaliser', keyRisk: true, justification: 'Silos entre tech et business → malentendus fréquents' },
+  { id: 22, type: 'Soft', categorie: 'Soft Skills', nom: 'Gestion du stress & résilience', criticite: 4, niveauActuel: 2, niveauRequis: 5, gap: 3, score: 12, action: 'Internaliser', keyRisk: true, justification: 'Rythme startup intense → risque de burnout équipe' },
+  { id: 23, type: 'Soft', categorie: 'Soft Skills', nom: 'Adaptabilité & agilité', criticite: 5, niveauActuel: 3, niveauRequis: 5, gap: 2, score: 10, action: 'Internaliser', keyRisk: false, justification: 'Pivots fréquents B2C→B2B exigent flexibilité' },
+  { id: 24, type: 'Soft', categorie: 'Soft Skills', nom: 'Intelligence émotionnelle', criticite: 4, niveauActuel: 2, niveauRequis: 4, gap: 2, score: 8, action: 'Internaliser', keyRisk: false, justification: 'Cohésion d\'équipe fragile en hypercroissance' },
+  { id: 25, type: 'Soft', categorie: 'Soft Skills', nom: 'Esprit critique & prise de décision', criticite: 5, niveauActuel: 3, niveauRequis: 5, gap: 2, score: 10, action: 'Internaliser', keyRisk: false, justification: 'Arbitrages produit/tech rapides nécessaires' },
+  { id: 26, type: 'Soft', categorie: 'Soft Skills', nom: 'Négociation & influence', criticite: 4, niveauActuel: 1, niveauRequis: 4, gap: 3, score: 12, action: 'Recruter', keyRisk: false, justification: 'Indispensable pour closing B2B et levée Série A' },
+  { id: 27, type: 'Soft', categorie: 'Soft Skills', nom: 'Travail en équipe & collaboration', criticite: 4, niveauActuel: 3, niveauRequis: 5, gap: 2, score: 8, action: 'Internaliser', keyRisk: false, justification: 'Passage de 10 à 30+ requiert culture collaborative' },
+  { id: 28, type: 'Soft', categorie: 'Soft Skills', nom: 'Créativité & innovation', criticite: 4, niveauActuel: 4, niveauRequis: 5, gap: 1, score: 4, action: 'Internaliser', keyRisk: false, justification: 'ADN startup à préserver malgré la structuration' },
+  { id: 29, type: 'Soft', categorie: 'Soft Skills', nom: 'Gestion des conflits', criticite: 4, niveauActuel: 1, niveauRequis: 4, gap: 3, score: 12, action: 'Recruter', keyRisk: true, justification: 'Tensions non-résolues → départs silencieux' },
+  { id: 30, type: 'Soft', categorie: 'Soft Skills', nom: 'Orientation résultats & ownership', criticite: 5, niveauActuel: 3, niveauRequis: 5, gap: 2, score: 10, action: 'Internaliser', keyRisk: false, justification: 'Culture OKR à déployer pour aligner les équipes' },
 ];
 
 const categories = ['Tout', 'Technologique', 'Business', 'Support', 'Soft Skills'];
@@ -92,7 +102,7 @@ export function Competences() {
       {/* Header */}
       <div>
         <h1 className="text-2xl font-bold text-slate-200">Cartographie des Compétences</h1>
-        <p className="text-slate-400 mt-1">Analyse stratégique des 20 compétences — Phase de scale SonicShelf</p>
+        <p className="text-slate-400 mt-1">Analyse stratégique des 30 compétences — Phase de scale SonicShelf</p>
       </div>
 
       {/* Stats */}
